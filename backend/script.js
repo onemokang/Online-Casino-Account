@@ -26,8 +26,8 @@ function deposit() {
     index = Math.sign(userInputDeposit.value); // Math.sign() returns 1 or -1, indicating the sign of the number passed as argument
 
     if (index === 1) {
-        depositInputError.innerText = ""
-        withdrawInputError.innerText = ""
+        displayInputError(depositInputError, "");
+        displayInputError(withdrawInputError, "");
 
         newBalance = +balance.innerText + +userInputDeposit.value;
         console.log('new balance: ' + newBalance)
@@ -47,8 +47,8 @@ function withdraw() {
     index = Math.sign(userInputWithdraw.value);
 
     if (index === 1) {
-        depositInputError.innerText = ""
-        withdrawInputError.innerText = ""
+        displayInputError(depositInputError, "");
+        displayInputError(withdrawInputError, "");
         newBalance = balance.innerText - userInputWithdraw.value;
         console.log('new balance: ' + newBalance)
 
