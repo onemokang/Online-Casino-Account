@@ -2,6 +2,10 @@ let userName = document.getElementById('userName');
 let balance = document.getElementById('balance');
 let userInputDeposit = document.getElementById('userInputDeposit');
 let userInputWithdraw = document.getElementById('userInputWithdraw');
+let depositInputError = document.getElementById('depositInputError');
+let withdrawInputError = document.getElementById('withdrawInputError');
+let depositButton = document.querySelector('div.depositButton');
+let withdrawButton = document.querySelector('div.withdrawButton');
 let newBalance;
 let index;
 
@@ -12,13 +16,18 @@ function initialLoad() {
 }
 initialLoad();
 
+function displayInputError(element, message) {
+    element.style.color = "red";
+    element.textContent = message;
+}
+
 function deposit() {
     console.log("userinput:" + userInputDeposit.value)
     index = Math.sign(userInputDeposit.value); // Math.sign() returns 1 or -1, indicating the sign of the number passed as argument
 
     if (index === 1) {
-        document.getElementById('depositInputError').innerText = ""
-        document.getElementById('withdrawInputError').innerText = ""
+        depositInputError.innerText = ""
+        withdrawInputError.innerText = ""
 
         newBalance = +balance.innerText + +userInputDeposit.value;
         console.log('new balance: ' + newBalance)
@@ -28,11 +37,9 @@ function deposit() {
         balance.innerText = newBalance;
     } else if (index !== 1){
         console.log('User input error: non-positive number was entered.');
-        document.getElementById('depositInputError').style.color = "red"
-        document.getElementById('depositInputError').innerText = "Error! Please enter a positive number without any special characters."
+        displayInputError(depositInputError, "Error! Please enter a positive number without any special characters.");
     } else{
-        document.getElementById('depositInputError').style.color = "red"
-        document.getElementById('depositInputError').innerText = "Unexpected error occured."
+        displayInputError(depositInputError, "Unexpected error occured.");
     }
 }
 
@@ -40,24 +47,22 @@ function withdraw() {
     index = Math.sign(userInputWithdraw.value);
 
     if (index === 1) {
-        document.getElementById('depositInputError').innerText = ""
-        document.getElementById('withdrawInputError').innerText = ""
+        depositInputError.innerText = ""
+        withdrawInputError.innerText = ""
         newBalance = balance.innerText - userInputWithdraw.value;
         console.log('new balance: ' + newBalance)
 
         if (newBalance < 0){
-            document.getElementById('withdrawInputError').style.color = "red"
-            document.getElementById('withdrawInputError').innerText = "Error! You cannot withdraw more than your balance! Only  $" + balance.innerText +" was successfully withdrawn. Your new balance is $0.00"
+            withdrawInputError.style.color = "red"
+            withdrawInputError.innerText = "Error! You cannot withdraw more than your balance! Only  $" + balance.innerText +" was successfully withdrawn. Your new balance is $0.00"
             newBalance = 0;
         }
         balance.innerText = newBalance;
     } else if (index !== 1){
         console.log('User input error: non-positive number was entered.');
-        document.getElementById('withdrawInputError').style.color = "red"
-        document.getElementById('withdrawInputError').innerText = "Error! Please enter a positive number without any special characters."
+        displayInputError(withdrawInputError, "Error! Please enter a positive number without any special characters.");
     } else{
-        document.getElementById('withdrawInputError').style.color = "red"
-        document.getElementById('withdrawInputError').innerText = "Unexpected error occured."
+        displayInputError(withdrawInputError, "Unexpected error occured.");
     }
 }
 
