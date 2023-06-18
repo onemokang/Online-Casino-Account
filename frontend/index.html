@@ -18,6 +18,9 @@
                 <div>
                     Signed in as <span id="userName"></span>
                 </div>
+                <div>
+                    Please deposit or withdraw after entering the appropriate amount.
+                </div>
             </section>
             <section>
                 <h2>Your Account</h2>
@@ -26,6 +29,7 @@
                     <form>
                         <label for="depositAmount">Deposit Amount ($)</label>
                         <input type="text" name="amount" id="userInputDeposit">
+                        <span id="depositInputError"></span>
                     </form>
                     <div class="buttons">
                         <div class="depositButton">Deposit</div>
@@ -35,6 +39,7 @@
                     <form>
                         <label for="withdrawalAmount">Withdrawl Amount ($)</label>
                         <input type="text" name="amount" id="userInputWithdraw">
+                        <span id="withdrawInputError"></span>
                     </form>
                     <div class="buttons">
                         <div class="withdrawButton">Withdraw</div>

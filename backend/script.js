@@ -17,30 +17,47 @@ function deposit() {
     index = Math.sign(userInputDeposit.value); // Math.sign() returns 1 or -1, indicating the sign of the number passed as argument
 
     if (index === 1) {
+        document.getElementById('depositInputError').innerText = ""
+        document.getElementById('withdrawInputError').innerText = ""
+
         newBalance = +balance.innerText + +userInputDeposit.value;
         console.log('new balance: ' + newBalance)
         if (newBalance < 0){
             newBalance = 0;
         }
         balance.innerText = newBalance;
-    } else {
-        console.log('user input error: non-positive number was entered.')
-    } 
+    } else if (index !== 1){
+        console.log('User input error: non-positive number was entered.');
+        document.getElementById('depositInputError').style.color = "red"
+        document.getElementById('depositInputError').innerText = "Error! Please enter a positive number without any special characters."
+    } else{
+        document.getElementById('depositInputError').style.color = "red"
+        document.getElementById('depositInputError').innerText = "Unexpected error occured."
+    }
 }
 
 function withdraw() {
     index = Math.sign(userInputWithdraw.value);
 
     if (index === 1) {
+        document.getElementById('depositInputError').innerText = ""
+        document.getElementById('withdrawInputError').innerText = ""
         newBalance = balance.innerText - userInputWithdraw.value;
         console.log('new balance: ' + newBalance)
 
         if (newBalance < 0){
+            document.getElementById('withdrawInputError').style.color = "red"
+            document.getElementById('withdrawInputError').innerText = "Error! You cannot withdraw more than your balance! Only  $" + balance.innerText +" was successfully withdrawn. Your new balance is $0.00"
             newBalance = 0;
         }
         balance.innerText = newBalance;
-    } else {
-        console.log('user input error: non-positive number was entered.')
+    } else if (index !== 1){
+        console.log('User input error: non-positive number was entered.');
+        document.getElementById('withdrawInputError').style.color = "red"
+        document.getElementById('withdrawInputError').innerText = "Error! Please enter a positive number without any special characters."
+    } else{
+        document.getElementById('withdrawInputError').style.color = "red"
+        document.getElementById('withdrawInputError').innerText = "Unexpected error occured."
     }
 }
 
