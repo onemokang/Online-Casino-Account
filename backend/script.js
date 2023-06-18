@@ -1,6 +1,7 @@
 let userName = document.getElementById('userName');
 let balance = document.getElementById('balance');
-let userInput = document.getElementById('userInput');
+let userInputDeposit = document.getElementById('userInputDeposit');
+let userInputWithdraw = document.getElementById('userInputWithdraw');
 let newBalance;
 let index;
 
@@ -12,13 +13,12 @@ function initialLoad() {
 initialLoad();
 
 function deposit() {
-    console.log("userinput:" + userInput.value)
-    index = Math.sign(userInput.value); // Math.sign() returns 1 or -1, indicating the sign of the number passed as argument
+    console.log("userinput:" + userInputDeposit.value)
+    index = Math.sign(userInputDeposit.value); // Math.sign() returns 1 or -1, indicating the sign of the number passed as argument
 
     if (index === 1) {
-        newBalance = +balance.innerText + +userInput.value;
+        newBalance = +balance.innerText + +userInputDeposit.value;
         console.log('new balance: ' + newBalance)
-
         if (newBalance < 0){
             newBalance = 0;
         }
@@ -28,12 +28,11 @@ function deposit() {
     } 
 }
 
-function cashout() {
-    userInput = 100;
-    index = Math.sign(userInput); // Math.sign() returns 1 or -1, indicating the sign of the number passed as argument
+function withdraw() {
+    index = Math.sign(userInputWithdraw.value);
 
     if (index === 1) {
-        newBalance = balance.innerText - userInput;
+        newBalance = balance.innerText - userInputWithdraw.value;
         console.log('new balance: ' + newBalance)
 
         if (newBalance < 0){
@@ -46,5 +45,5 @@ function cashout() {
 }
 
 document.querySelector('div.depositButton').addEventListener('click', deposit)
-document.querySelector('div.cashoutButton').addEventListener('click', cashout)
+document.querySelector('div.withdrawButton').addEventListener('click', withdraw)
 
