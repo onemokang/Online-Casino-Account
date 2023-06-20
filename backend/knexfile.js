@@ -10,6 +10,7 @@ module.exports = {
     connection: {
       database: 'casino_db',
       host: 'localhost',
+      filename: 'postgres://localhost/casino_db',
       user:     'postgres',
       password: ''
     }
