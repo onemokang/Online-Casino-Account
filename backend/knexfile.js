@@ -8,14 +8,17 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      filename: 'postgres://localhost/casinodb'
+      database: 'casino_db',
+      host: 'localhost',
+      user:     'postgres',
+      password: ''
     }
   },
 
   staging: {
     client: 'postgresql',
     connection: {
-      database: 'my_db',
+      database: 'casino_db',
       user:     'username',
       password: 'password'
     },
