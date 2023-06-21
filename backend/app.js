@@ -8,7 +8,21 @@ const port = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get('/account', (req, res) = >{
+app.use(cors({origin: '*'}));
+
+app.listen('/', () => {
+    console.log(`App is running on port ${port}`)
+});
+
+app.get('/', () => {
+    console.log(`Welcome to Casino de Monte Fortuna!`)
+});
+
+app.get('/account', (req, res) => {
     knex('casino')
     // .then()
 })
+
+
+
+module.exports = app;
