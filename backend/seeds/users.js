@@ -13,7 +13,12 @@ exports.seed = function(knex, Promise){
             {first_name: "SpongeBob", last_name: "SquarePants", email: "spongebob.squarepants@gmail.com"},
             {first_name: "Squidward", last_name: "Tentacles", email: "squidward.tentacles@gmail.com"},
         ])
+    })
+    // Reset the table that tracks the auto-incrementing number; needed for using foreign keys to maintain the same id for each value
+    .then(() => {
+        return knex.raw(
+            `SELECT setval('users_id_seq', (SELECT MAX(id) FROM users);`
+        )
     }
-
-    ) 
+    )
 }
