@@ -6,9 +6,11 @@ const knex = require('knex')(config);
 const port = 3000;
 const cors = require('cors');
 
-// controller
+// controllers
 const usersController = require('./controllers/users_controller');
 app.use('/user', usersController);
+const locationsController = require('./controllers/locations_controller');
+app.use('/user',locationsController);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
